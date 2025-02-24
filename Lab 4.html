@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <title>INST377 - Lab 4</title>
+    <style>
+        body {
+            background-color: lightcyan;
+            font-family: monospace;
+        }
+
+        input {
+            background-color: antiquewhite;
+            color: rgb(0, 0, 0);
+        }
+
+        .box {
+            background-color: aquamarine;
+            text-align: center;
+            width: 350px;
+            height: 40px;
+            padding-top: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        #rightside {
+            width: 500px;
+            float: left;
+        }
+
+        .leftside {
+            width: 400px;
+            float: left;
+        }
+
+        .topside {
+            width: 100%;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .bottomside {
+            width: 100%;
+            height: auto;
+            margin-top: 100px;
+        }
+
+        .textbox {
+            width: 120px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="topside">
+        <h1 id="main-heading">INST377 - Lab 4</h1>
+
+        <div class="leftside">
+            <div class="box">
+                <form onsubmit="return alertMe()">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="textbox" required>
+                    <button type="submit">Alert Me</button>
+                </form>
+            </div>
+        </div>
+
+        <aside id="rightside">
+            <div class="box">
+                <button onclick="changeColor()">Change Color</button>
+            </div>
+        </aside>
+    </div>
+    
+    <div class="bottomside">
+        <div class="leftside">
+            <div class="box">
+                <form id="textForm">
+                    <label for="textInput">Enter text:</label>
+                    <input type="text" id="inputText" class="textbox" required>
+                    <button type="button" onclick="validateText()">Validate Text</button>
+                </form>
+            </div>
+        </div>
+
+        <aside id="rightside">
+            <div class="box">
+                <button onclick="addText()">Add Text</button>            </div>
+        </aside>
+    </div>
+
+    <script>
+        function alertMe() {
+            const name = document.getElementById("name").value;
+            console.log("User entered name:", name);
+            alert("Hi " + name + "!");
+            return false;
+        }
+
+        function changeColor() {
+            console.log("Current background color:", document.body.style.backgroundColor);
+            if (document.body.style.backgroundColor === "lightcyan") {
+                document.body.style.backgroundColor = "green";
+            } else {
+                document.body.style.backgroundColor = "lightcyan";
+            }
+            console.log("New background color:", document.body.style.backgroundColor);
+        }
+
+        function addText() {
+            const heading = document.getElementById("main-heading");
+            console.log("Current heading text:", heading.textContent);
+            heading.textContent += " Add Text";
+            console.log("Updated heading text:", heading.textContent);
+        }
+
+        function validateText() {
+            const text = document.getElementById("inputText").value;
+            console.log("User entered text:", text);
+            const validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            
+            if (validation.test(text)) {
+                console.log("Validation failed: Special characters detected.");
+                alert("Text is not valid, special characters detected");
+            } else {
+                console.log("Validation passed: No special characters.");
+                inputText.value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
